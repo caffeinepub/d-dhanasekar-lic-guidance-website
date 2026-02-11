@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
-  "summary": "Expand the existing LIC guidance website to include an LIC Agent recruitment section: replace the Services menu with a dedicated \"Join as LIC Agent\" page, add recruitment content and an \"Apply Now\" form that saves applications to the database, improve background image readability with overlays/gradients across the site, ensure call CTA uses a functional tel: link, update copy to professional/catchy (using provided link if accessible), use a full-width navigation bar on mobile (no hamburger menu), and add a site-wide mobile-number prompt on any button click that opens WhatsApp to 9095077994 with a prefilled message and then closes the prompt.",
+  "projectStateVersion": 11,
+  "summary": "Expand the existing LIC guidance website to include an LIC Agent recruitment section: replace the Services menu with a dedicated \"Join as LIC Agent\" page, add recruitment content and an \"Apply Now\" form that saves applications to the database, improve background image readability with overlays/gradients across the site, ensure call CTA uses a functional tel: link, update copy to professional/catchy (using provided link if accessible), use a full-width navigation bar on mobile (no hamburger menu), and update the site-wide WhatsApp mobile-number prompt to show only once per browser session (not on every click); when the user clicks Continue after entering their phone number, WhatsApp should open immediately with the prefilled message and no extra confirmation.",
   "architectural_notes": [
     "Design style: simple, clear spacing, minimal icons, rounded CTA buttons, fully mobile responsive",
     "Color palette (LIC-inspired): Primary Blue #003399, Accent Yellow #FFCC00, White #FFFFFF, Text #333333",
@@ -9,7 +9,7 @@
     "Apply darker overlays/solid gradients to background images site-wide to improve text readability",
     "Navigation pattern: always show a full-width navigation bar on mobile (no hamburger menu)",
     "Backend admin functions required for inquiries and agent applications: listing, add/delete, status+date fields, and sorting; status enum = New, In Progress, Completed, Pending, Approved, Rejected.",
-    "Site-wide interaction requirement: any button click should trigger a mobile-number prompt and then open WhatsApp (prefilled message to 9095077994) before closing the prompt."
+    "Update site-wide mobile-number prompt: display only once per browser session (session-scoped), and on Continue immediately open WhatsApp with the prefilled message without additional confirmation."
   ],
   "known_issues": [],
   "isFixRequest": false,
@@ -181,6 +181,22 @@
         "REQ-29"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-site-wide-mobile-number-prompt-flow-so-the-prompt-is-shown-only-once-per-browser-session-after-a-user-successfully-enters-a-valid-mobile-number-and-clicks-continue-do-not-show-the-prompt-again-until-the-browser-session-ends-i-e-sessionstorage-is-cleared",
+      "title": "Update the site-wide mobile-number prompt flow so the prompt is shown only once per browser session: after a user successfully enters a valid mobile number and clicks Continue, do not show the prompt again until the browser session ends (i.e., sessionStorage is cleared).",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-when-the-user-clicks-continue-in-the-mobile-number-prompt-modal-after-successful-validation-immediately-open-whatsapp-to-9095077994-with-the-prefilled-message-that-includes-the-entered-mobile-number-using-the-existing-whatsapp-link-helper-with-no-additional-confirmation-step-then-close-the-prompt-and-continue-the-originally-attempted-click-action",
+      "title": "When the user clicks Continue in the mobile-number prompt modal (after successful validation), immediately open WhatsApp to 9095077994 with the prefilled message that includes the entered mobile number (using the existing WhatsApp link helper), with no additional confirmation step; then close the prompt and continue the originally attempted click action.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -327,10 +343,10 @@
       "status": "pending"
     },
     {
-      "id": "AR-34",
-      "summary": "Show a prompt for mobile number on every button click site-wide; after entry, open WhatsApp to 9095077994 with a prefilled message including the entered number, then close the prompt",
+      "id": "AR-35",
+      "summary": "Update site-wide mobile-number prompt behavior: show only once per browser session; on Continue after entering number, immediately open WhatsApp with prefilled message (no extra confirmation)",
       "reqIds": [],
-      "status": "in_progress"
+      "status": "pending"
     }
   ],
   "gameProjectType": "none",

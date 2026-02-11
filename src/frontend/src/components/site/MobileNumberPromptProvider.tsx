@@ -20,6 +20,8 @@ interface MobileNumberPromptProviderProps {
   children: React.ReactNode;
 }
 
+const SESSION_STORAGE_KEY = 'mobile_prompt_completed';
+
 export default function MobileNumberPromptProvider({ children }: MobileNumberPromptProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
@@ -32,6 +34,9 @@ export default function MobileNumberPromptProvider({ children }: MobileNumberPro
   }, []);
 
   const handleConfirm = useCallback((mobileNumber: string) => {
+    // Mark prompt as completed for this session
+    sessionStorage.setItem(SESSION_STORAGE_KEY, 'true');
+
     // Open WhatsApp with prefilled message
     const whatsappUrl = getWhatsAppLinkForPrompt(mobileNumber);
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
@@ -62,6 +67,13 @@ export default function MobileNumberPromptProvider({ children }: MobileNumberPro
     const handleClick = (event: MouseEvent) => {
       // Skip if bypass flag is set
       if (bypassNextClick.current) {
+        return;
+      }
+
+      // Check if prompt was already completed in this session
+      const promptCompleted = sessionStorage.getItem(SESSION_STORAGE_KEY);
+      if (promptCompleted === 'true') {
+        // Allow the click to proceed normally
         return;
       }
 

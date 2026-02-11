@@ -1,17 +1,46 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T19:22:37.435Z",
-  "summary": "Implemented a site-wide mobile-number prompt modal via a provider that intercepts clicks on clickable elements, validates Indian mobile numbers, and opens WhatsApp using a centralized link helper with a consistent prefilled message template.",
-  "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.74,
+  "generatedAt": "2026-02-11T19:30:22.328Z",
+  "summary": "The diff updates MobileNumberPromptProvider to use sessionStorage to suppress the prompt after a successful Continue, and auto-opens WhatsApp via the existing getWhatsAppLinkForPrompt helper before closing the modal and attempting to run the originally-blocked action. However, validation behavior and some acceptance-criteria details cannot be fully verified due to truncation, and there are extra non-requested updates to project metadata/summaries.",
+  "missing_requirements": [
+    {
+      "id": "REQ-30",
+      "requirement": "On a fresh session, the first click on a clickable control (<button>, <a>, or elements matching the provider’s selector) opens the mobile-number prompt modal.",
+      "reason": "The provider intercepts clicks for `button, a, [role=\"button\"], [role=\"link\"]`, but the BuildRequest also mentions “elements matching the provider’s selector”. No evidence is shown that a configurable/explicit provider selector is supported beyond the hardcoded selectors, and the file is truncated before confirming broader selector handling.",
+      "evidence": [
+        "frontend/src/components/site/MobileNumberPromptProvider.tsx"
+      ]
+    },
+    {
+      "id": "REQ-31",
+      "requirement": "Clicking Continue only proceeds after successful validation of a valid Indian mobile number.",
+      "reason": "The Continue handler (`handleConfirm(mobileNumber)`) always sets the session flag and opens WhatsApp. The diff does not show any validation gate in the provider, and the modal implementation/validation is not included in the provided diff content, so it cannot be confirmed that invalid numbers cannot reach `handleConfirm`.",
+      "evidence": [
+        "frontend/src/components/site/MobileNumberPromptProvider.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Updated project metadata/state summary content unrelated to REQ-30/REQ-31 implementation.",
+      "reason": "The BuildRequest asks for frontend behavior changes; updating `project_state.json` summary/versioning is not requested behavior.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Updated/rewritten frontend file summaries list.",
+      "reason": "`frontend-file-summaries.txt` changes are not part of the requested functional requirements.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.55,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/App.tsx",
-    "frontend/src/components/site/MobileNumberPromptModal.tsx",
     "frontend/src/components/site/MobileNumberPromptProvider.tsx",
-    "frontend/src/lib/contactLinks.ts",
     "project_state.json"
   ]
 }

@@ -2,11 +2,9 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-site-wide-interaction-that-triggers-on-any-user-click-of-a-clickable-control-at-minimum-button-a-and-tanstack-router-link-and-shows-a-prompt-modal-asking-for-the-user-s-mobile-number-before-allowing-the-click-s-original-action-to-continue",
-      "featureTitle": "Add a site-wide interaction that triggers on any user click of a clickable control (at minimum: <button>, <a>, and TanStack Router <Link>) and shows a prompt/modal asking for the user’s mobile number before allowing the click’s original action to continue.",
+      "featureId": "feature-update-the-site-wide-mobile-number-prompt-flow-so-the-prompt-is-shown-only-once-per-browser-session-after-a-user-successfully-enters-a-valid-mobile-number-and-clicks-continue-do-not-show-the-prompt-again-until-the-browser-session-ends-i-e-sessionstorage-is-cleared",
+      "featureTitle": "Update the site-wide mobile-number prompt flow so the prompt is shown only once per browser session: after a user successfully enters a valid mobile number and clicks Continue, do not show the prompt again until the browser session ends (i.e., sessionStorage is cleared).",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/site/MobileNumberPromptModal.tsx",
         "frontend/src/components/site/MobileNumberPromptProvider.tsx"
       ],
       "components": [
@@ -18,15 +16,14 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-27"
+        "REQ-30"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-in-the-prompt-modal-validate-the-entered-mobile-number-non-empty-must-look-like-a-valid-indian-mobile-number-and-on-confirm-open-whatsapp-to-9095077994-with-a-prefilled-message-that-includes-the-entered-mobile-number-then-close-the-prompt",
-      "featureTitle": "In the prompt/modal, validate the entered mobile number (non-empty; must look like a valid Indian mobile number) and on confirm open WhatsApp to 9095077994 with a prefilled message that includes the entered mobile number; then close the prompt.",
+      "featureId": "feature-when-the-user-clicks-continue-in-the-mobile-number-prompt-modal-after-successful-validation-immediately-open-whatsapp-to-9095077994-with-the-prefilled-message-that-includes-the-entered-mobile-number-using-the-existing-whatsapp-link-helper-with-no-additional-confirmation-step-then-close-the-prompt-and-continue-the-originally-attempted-click-action",
+      "featureTitle": "When the user clicks Continue in the mobile-number prompt modal (after successful validation), immediately open WhatsApp to 9095077994 with the prefilled message that includes the entered mobile number (using the existing WhatsApp link helper), with no additional confirmation step; then close the prompt and continue the originally attempted click action.",
       "files": [
-        "frontend/src/components/site/MobileNumberPromptModal.tsx",
         "frontend/src/components/site/MobileNumberPromptProvider.tsx"
       ],
       "components": [
@@ -38,27 +35,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-28"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-whatsapp-prefilled-message-uses-the-existing-whatsapp-link-helper-and-consistently-formats-the-text-across-the-entire-site",
-      "featureTitle": "Ensure the WhatsApp prefilled message uses the existing WhatsApp link helper and consistently formats the text across the entire site.",
-      "files": [
-        "frontend/src/components/site/MobileNumberPromptProvider.tsx",
-        "frontend/src/lib/contactLinks.ts"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-29"
+        "REQ-31"
       ],
       "confidence": "high"
     }
