@@ -1,0 +1,340 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 9,
+  "summary": "Expand the existing LIC guidance website to include an LIC Agent recruitment section: replace the Services menu with a dedicated \"Join as LIC Agent\" page, add recruitment content and an \"Apply Now\" form that saves applications to the database, improve background image readability with overlays/gradients across the site, ensure call CTA uses a functional tel: link, update copy to professional/catchy (using provided link if accessible), use a full-width navigation bar on mobile (no hamburger menu), and add a site-wide mobile-number prompt on any button click that opens WhatsApp to 9095077994 with a prefilled message and then closes the prompt.",
+  "architectural_notes": [
+    "Design style: simple, clear spacing, minimal icons, rounded CTA buttons, fully mobile responsive",
+    "Color palette (LIC-inspired): Primary Blue #003399, Accent Yellow #FFCC00, White #FFFFFF, Text #333333",
+    "Typography: Headings Poppins/Montserrat; Body Open Sans/Roboto",
+    "Apply darker overlays/solid gradients to background images site-wide to improve text readability",
+    "Navigation pattern: always show a full-width navigation bar on mobile (no hamburger menu)",
+    "Backend admin functions required for inquiries and agent applications: listing, add/delete, status+date fields, and sorting; status enum = New, In Progress, Completed, Pending, Approved, Rejected.",
+    "Site-wide interaction requirement: any button click should trigger a mobile-number prompt and then open WhatsApp (prefilled message to 9095077994) before closing the prompt."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-responsive-multi-page-marketing-website-inspired-by-the-structure-clarity-of-https-shitanshudolic-com-with-the-following-pages-and-navigation-home-about-lic-policy-details-services-contact",
+      "title": "Create a responsive multi-page marketing website inspired by the structure/clarity of https://shitanshudolic.com with the following pages and navigation: Home, About LIC, Policy Details, Services, Contact.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-home-page-sections-using-the-provided-copy-hero-headline-subheadline-prominent-primary-ctas-call-now-9095077994-and-get-free-policy-consultation-welcome-section-why-choose-lic-bullet-list-policy-categories-overview-and-a-quick-contact-cta-section",
+      "title": "Implement the Home page sections using the provided copy: Hero (headline, subheadline), prominent primary CTAs (Call Now 9095077994 and Get Free Policy Consultation), Welcome section, Why Choose LIC bullet list, Policy Categories overview, and a Quick Contact CTA section.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-about-lic-page-using-the-provided-about-lic-copy-and-the-requested-sections-lic-history-trust-mission-values-why-lic-is-reliable-and-government-backed-credibility",
+      "title": "Implement the About LIC page using the provided About LIC copy and the requested sections: LIC history & trust, mission & values, why LIC is reliable, and government-backed credibility.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-policy-details-page-with-six-policy-sections-term-endowment-money-back-child-pension-retirement-ulip-each-section-must-include-short-description-benefits-list-ideal-for-text-and-a-per-section-call-button-that-dials-9095077994",
+      "title": "Implement the Policy Details page with six policy sections (Term, Endowment, Money Back, Child, Pension & Retirement, ULIP). Each section must include: short description, benefits list, 'Ideal for' text, and a per-section Call button that dials 9095077994.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-services-page-listing-the-provided-services-offered-policy-purchase-assistance-revival-support-nomination-changes-address-contact-updates-premium-reminders-claim-assistance-guidance-policy-status-information-in-a-clean-scannable-layout",
+      "title": "Implement the Services page listing the provided services offered (policy purchase assistance, revival support, nomination changes, address/contact updates, premium reminders, claim assistance guidance, policy status information) in a clean, scannable layout.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-contact-page-with-contact-details-name-designation-location-phone-clear-call-whatsapp-ctas-and-a-simple-inquiry-form-with-fields-name-phone-number-email-type-of-policy-interested-in-message",
+      "title": "Implement the Contact page with: contact details (name, designation, location, phone), clear Call/WhatsApp CTAs, and a simple inquiry form with fields Name, Phone Number, Email, Type of Policy Interested In, Message.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-site-wide-floating-action-buttons-a-floating-call-button-tel-9095077994-and-a-floating-whatsapp-button-wa-me-to-9095077994-ensure-they-do-not-block-important-content-on-small-screens",
+      "title": "Add site-wide floating action buttons: a floating Call button (tel:9095077994) and a floating WhatsApp button (wa.me to 9095077994). Ensure they do not block important content on small screens.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-persist-inquiry-form-submissions-to-the-backend-and-show-a-user-friendly-success-error-state-after-submission",
+      "title": "Persist inquiry form submissions to the backend and show a user-friendly success/error state after submission.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-the-provided-lic-inspired-visual-styling-consistently-across-all-pages-primary-003399-accent-ffcc00-white-background-dark-text-333333-simple-layout-with-clear-spacing-rounded-cta-buttons-minimal-icons-and-fully-mobile-responsive-design",
+      "title": "Apply the provided LIC-inspired visual styling consistently across all pages: Primary #003399, Accent #FFCC00, white background, dark text #333333; simple layout with clear spacing, rounded CTA buttons, minimal icons, and fully mobile responsive design.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-footer-on-all-pages-that-includes-contact-details-d-dhanasekar-villupuram-9095077994-and-trust-building-language-aligned-with-the-provided-copy",
+      "title": "Add a footer on all pages that includes contact details (D. Dhanasekar, Villupuram, 9095077994) and trust-building language aligned with the provided copy.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-optional-google-map-embed-on-the-contact-page-for-villupuram-location-if-enabled-implemented-it-must-be-responsive-and-not-break-layout",
+      "title": "Add an optional Google Map embed on the Contact page for Villupuram location (if enabled/implemented, it must be responsive and not break layout).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-top-navigation-item-labeled-services-with-a-new-navigation-item-labeled-join-as-lic-agent-and-route-it-to-a-dedicated-recruitment-page-do-not-show-services-in-the-primary-navigation-after-this-change",
+      "title": "Replace the existing top navigation item labeled \"Services\" with a new navigation item labeled \"Join as LIC Agent\" and route it to a dedicated recruitment page; do not show \"Services\" in the primary navigation after this change.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-mobile-header-to-use-a-full-width-navigation-bar-no-hamburger-3-line-menu-and-no-toggleable-mobile-menu-state",
+      "title": "Update the mobile header to use a full-width navigation bar (no hamburger/3-line menu and no toggleable mobile menu state).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-join-as-lic-agent-recruitment-page-with-professional-catchy-not-flashy-english-copy-including-1-benefits-of-becoming-an-lic-agent-2-eligibility-and-3-requirements-use-https-readdy-cc-preview-22c87765-ff3b-4be5-9558-51daabe084ac-6253969-as-the-primary-reference-if-accessible-otherwise-write-original-copy",
+      "title": "Create a new \"Join as LIC Agent\" recruitment page with professional, catchy (not flashy) English copy including: (1) benefits of becoming an LIC agent, (2) eligibility, and (3) requirements; use https://readdy.cc/preview/22c87765-ff3b-4be5-9558-51daabe084ac/6253969 as the primary reference if accessible, otherwise write original copy.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-apply-now-form-to-the-join-as-lic-agent-page-collect-and-validate-minimum-required-applicant-details-including-name-phone-email-age-location-and-notes-message-on-submit-persist-the-application-to-the-backend-and-show-user-friendly-loading-success-error-states",
+      "title": "Add an \"Apply Now\" form to the \"Join as LIC Agent\" page; collect and validate (minimum required) applicant details including Name, Phone, Email, Age, Location, and Notes/Message; on submit, persist the application to the backend and show user-friendly loading/success/error states.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-background-image-readability-site-wide-by-applying-darker-overlays-or-solid-gradients-wherever-text-sits-on-top-of-background-images-and-adjust-any-section-styling-as-needed-to-maintain-clear-contrast",
+      "title": "Improve background image readability site-wide by applying darker overlays or solid gradients wherever text sits on top of background images (and adjust any section styling as needed to maintain clear contrast).",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-review-and-update-existing-site-copy-across-home-about-lic-policy-details-contact-and-the-new-recruitment-page-to-be-more-professional-and-catchy-not-flashy-using-the-reference-link-https-readdy-cc-preview-22c87765-ff3b-4be5-9558-51daabe084ac-6253969-where-applicable-accessible-keep-phone-number-and-factual-details-accurate",
+      "title": "Review and update existing site copy across Home, About LIC, Policy Details, Contact, and the new recruitment page to be more professional and catchy (not flashy), using the reference link https://readdy.cc/preview/22c87765-ff3b-4be5-9558-51daabe084ac/6253969 where applicable/accessible; keep phone number and factual details accurate.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-primary-call-ctas-across-the-site-use-a-functional-tel-link-to-9095077994-including-any-call-buttons-added-updated-as-part-of-the-recruitment-page-and-copy-refresh",
+      "title": "Ensure all primary \"Call\" CTAs across the site use a functional tel: link to 9095077994 (including any call buttons added/updated as part of the recruitment page and copy refresh).",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-site-wide-interaction-that-triggers-on-any-user-click-of-a-clickable-control-at-minimum-button-a-and-tanstack-router-link-and-shows-a-prompt-modal-asking-for-the-user-s-mobile-number-before-allowing-the-click-s-original-action-to-continue",
+      "title": "Add a site-wide interaction that triggers on any user click of a clickable control (at minimum: <button>, <a>, and TanStack Router <Link>) and shows a prompt/modal asking for the user’s mobile number before allowing the click’s original action to continue.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-prompt-modal-validate-the-entered-mobile-number-non-empty-must-look-like-a-valid-indian-mobile-number-and-on-confirm-open-whatsapp-to-9095077994-with-a-prefilled-message-that-includes-the-entered-mobile-number-then-close-the-prompt",
+      "title": "In the prompt/modal, validate the entered mobile number (non-empty; must look like a valid Indian mobile number) and on confirm open WhatsApp to 9095077994 with a prefilled message that includes the entered mobile number; then close the prompt.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-whatsapp-prefilled-message-uses-the-existing-whatsapp-link-helper-and-consistently-formats-the-text-across-the-entire-site",
+      "title": "Ensure the WhatsApp prefilled message uses the existing WhatsApp link helper and consistently formats the text across the entire site.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create multi-page site structure: Home, About LIC, Policy Details, Services, Contact",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add prominent CTAs: Call Now (9095077994) and WhatsApp buttons (including floating call button)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Implement simple inquiry/contact form (name, phone, email, policy interest, message)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Policy Details page with sections for Term, Endowment, Money Back, Child, Pension/Retirement, ULIP including description/benefits/ideal-for and per-section call button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Optional Google Map embed for Villupuram location on Contact page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add footer with contact details and trust-building language; ensure mobile responsive layout and easy navigation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Implement a backend data model and API for inquiries with fields: name, phone, email, policyInterest, message, createdAt timestamp, and a generated id.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Improve background image text visibility site-wide using darker overlays or solid gradients",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Replace the \"Services\" navigation/menu item with \"Join as LIC Agent\" and create a dedicated recruitment page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Add LIC Agent recruitment content on the new page (benefits, eligibility, requirements) with professional, catchy (not flashy) copy; use provided link as reference if accessible",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Create an \"Apply Now\" recruitment form and persist submissions/applications to the backend database",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Ensure the primary Call button is functional using a tel: link",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Update navigation to a full-width bar on mobile (disable hamburger/3-line menu)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Extend the Motoko backend canister to store LIC agent applications separately from inquiries and expose endpoints to (a) submit an application and (b) allow admins to list all applications.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Add backend admin capabilities for both inquiries and agent applications: list all items, add/delete entries, add status + date fields, and support sorting; use status options New/In Progress/Completed/Pending/Approved/Rejected.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Extend the backend data types for both Inquiry and AgentApplication to include an admin-managed status field with the allowed values: New, In Progress, Completed, Pending, Approved, Rejected.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Add an admin-only backend method to update the status of an existing Inquiry or AgentApplication by id, and record a status/date timestamp whenever the status changes.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Add admin-only backend methods to delete an Inquiry by id and delete an AgentApplication by id.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Add admin-only backend methods to create (add) Inquiry and AgentApplication entries directly (i.e., without using the public submit/submitAgentApplication flows), including setting status at creation time.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Enhance admin listing endpoints for inquiries and agent applications to support sorting, including at minimum sorting by createdAt date and sorting by status, with selectable ascending/descending order.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "If the canister uses upgrade/migration logic, add a conditional migration to safely populate the new status and status/date timestamp fields for existing Inquiry and AgentApplication records during upgrade (using defaults).",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-34",
+      "summary": "Show a prompt for mobile number on every button click site-wide; after entry, open WhatsApp to 9095077994 with a prefilled message including the entered number, then close the prompt",
+      "reqIds": [],
+      "status": "in_progress"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "D. Dhanasekar LIC Guidance Website",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

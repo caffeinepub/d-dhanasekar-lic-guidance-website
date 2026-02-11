@@ -1,0 +1,74 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Site-wide mobile-number prompt gating clicks and opening WhatsApp with prefilled message",
+  "requirements": [
+    {
+      "id": "REQ-27",
+      "summary": "Gate all site-wide clicks on clickable controls behind a mobile-number prompt, resuming the original action only after confirm or cancel.",
+      "acceptanceCriteria": [
+        "Clicking any button-like element anywhere in the app (including Home CTAs, navigation links, floating buttons, and form submit buttons) first opens the mobile-number prompt/modal.",
+        "The original click action (navigation, tel: link, form submit, etc.) does not execute until the user completes or cancels the prompt.",
+        "Clicks inside the prompt/modal UI itself (e.g., Cancel/Continue) do not re-trigger the same prompt (no infinite loop)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/site/MobileNumberPromptProvider.tsx",
+          "operation": "create",
+          "description": "Create an app-owned provider that registers a capture-phase global click listener (document/window) to intercept clicks on <button>, <a>, and TanStack Router <Link> (anchors), prevent the original action, and open the mobile-number modal while storing a resumable pending action; include safeguards to ignore clicks originating from within the modal and to bypass interception for the single replayed action after confirmation. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/site/MobileNumberPromptModal.tsx",
+          "operation": "create",
+          "description": "Create an app-owned modal component rendered by the provider (via portal/overlay) that collects the user mobile number and exposes Cancel/Continue actions; ensure modal interactive elements are marked/handled so their clicks do not retrigger the global click capture. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire MobileNumberPromptProvider into the root Layout so the click-capture behavior applies site-wide across header, footer, floating buttons, and all routed pages (no orphan modal/provider). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "summary": "Validate Indian mobile number in the prompt and, on confirm, open WhatsApp chat to 9095077994 with a prefilled message that includes the entered number, then close the prompt.",
+      "acceptanceCriteria": [
+        "The prompt requires a mobile number; invalid/empty input shows an inline validation message and does not proceed.",
+        "On successful confirm, the app opens a new browser tab/window to a wa.me link for 9095077994 with URL-encoded prefilled text that includes the entered number.",
+        "After opening WhatsApp, the prompt closes automatically."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/site/MobileNumberPromptModal.tsx",
+          "operation": "modify",
+          "description": "Implement input state, normalization, and validation for Indian mobile numbers (non-empty; must resemble a valid 10-digit Indian mobile starting with 6-9, allowing optional +91/spaces/dashes); show an inline validation message and block confirm until valid. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/site/MobileNumberPromptProvider.tsx",
+          "operation": "modify",
+          "description": "On modal confirm, generate the WhatsApp URL using the shared helper (via frontend/src/lib/contactLinks.ts), open it in a new tab/window (user-initiated), close the modal, and then resume the originally-blocked click action exactly once using a bypass flag to avoid re-triggering the prompt. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "summary": "Centralize WhatsApp prefilled message formatting and ensure the prompt uses the existing WhatsApp link helper consistently across the site.",
+      "acceptanceCriteria": [
+        "All WhatsApp opens triggered by the new prompt use the same message template and use the existing WhatsApp link utility (frontend/src/lib/contactLinks.ts) to generate the final URL.",
+        "The generated WhatsApp URL targets https://wa.me/91 + 9095077994 and includes the message as the text query parameter."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/lib/contactLinks.ts",
+          "operation": "modify",
+          "description": "Add a dedicated exported helper for the prompt flow that builds a consistent message template including the entered mobile number and returns the final wa.me URL by calling the existing getWhatsAppLink(message) (ensuring encodeURIComponent is applied by the helper); keep the target number consistent with the existing PHONE_NUMBER constant. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/site/MobileNumberPromptProvider.tsx",
+          "operation": "modify",
+          "description": "Update the confirm flow to exclusively use the new/updated helper(s) in frontend/src/lib/contactLinks.ts for WhatsApp URL generation so message formatting is consistent everywhere this prompt triggers WhatsApp. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,2 +1,3 @@
-# d-dhanasekar-lic-guidance-website
-Exported from Caffeine project: D. Dhanasekar LIC Guidance Website
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

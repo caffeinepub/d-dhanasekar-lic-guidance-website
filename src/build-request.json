@@ -1,0 +1,77 @@
+{
+  "kind": "build_request",
+  "title": "Site-wide mobile-number prompt on any button click and open WhatsApp with prefilled message",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-27",
+      "text": "Add a site-wide interaction that triggers on any user click of a clickable control (at minimum: <button>, <a>, and TanStack Router <Link>) and shows a prompt/modal asking for the user’s mobile number before allowing the click’s original action to continue.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6",
+          "msg-7"
+        ],
+        "quotes": [
+          "add a feature that whenever someone clicks any button, a prompt box should appear asking their mobile number",
+          "2.yes every button"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking any button-like element anywhere in the app (including Home CTAs, navigation links, floating buttons, and form submit buttons) first opens the mobile-number prompt/modal.",
+        "The original click action (navigation, tel: link, form submit, etc.) does not execute until the user completes or cancels the prompt.",
+        "Clicks inside the prompt/modal UI itself (e.g., Cancel/Continue) do not re-trigger the same prompt (no infinite loop)."
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "In the prompt/modal, validate the entered mobile number (non-empty; must look like a valid Indian mobile number) and on confirm open WhatsApp to 9095077994 with a prefilled message that includes the entered mobile number; then close the prompt.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "1. prefilled message will do",
+          "3.close prompt"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The prompt requires a mobile number; invalid/empty input shows an inline validation message and does not proceed.",
+        "On successful confirm, the app opens a new browser tab/window to a wa.me link for 9095077994 with URL-encoded prefilled text that includes the entered number.",
+        "After opening WhatsApp, the prompt closes automatically."
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "text": "Ensure the WhatsApp prefilled message uses the existing WhatsApp link helper and consistently formats the text across the entire site.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "prefilled message will do"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All WhatsApp opens triggered by the new prompt use the same message template and use the existing WhatsApp link utility (frontend/src/lib/contactLinks.ts) to generate the final URL.",
+        "The generated WhatsApp URL targets https://wa.me/91 + 9095077994 and includes the message as the text query parameter."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not implement automatic SMS sending; the feature must use a WhatsApp wa.me link with a prefilled message (no SMS/WhatsApp API integrations).",
+    "Do not edit files under frontend/src/components/ui (read-only); implement the prompt/modal and click-capture using app-owned components and composition.",
+    "Backend must remain single-actor; no new backend services or external integrations."
+  ],
+  "nonGoals": [
+    "Building an email/password admin system.",
+    "Sending WhatsApp messages automatically without user interaction (must open WhatsApp for the user to send).",
+    "Adding new pages or changing existing LIC marketing/recruitment content beyond what is needed to support this prompt behavior."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
