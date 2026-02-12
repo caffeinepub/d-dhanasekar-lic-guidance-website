@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 11,
-  "summary": "Expand the existing LIC guidance website to include an LIC Agent recruitment section: replace the Services menu with a dedicated \"Join as LIC Agent\" page, add recruitment content and an \"Apply Now\" form that saves applications to the database, improve background image readability with overlays/gradients across the site, ensure call CTA uses a functional tel: link, update copy to professional/catchy (using provided link if accessible), use a full-width navigation bar on mobile (no hamburger menu), and update the site-wide WhatsApp mobile-number prompt to show only once per browser session (not on every click); when the user clicks Continue after entering their phone number, WhatsApp should open immediately with the prefilled message and no extra confirmation.",
+  "projectStateVersion": 19,
+  "summary": "Expand the existing LIC guidance website to include an LIC Agent recruitment section: replace the Services menu with a dedicated \"Join as LIC Agent\" page, add recruitment content and an \"Apply Now\" form that saves applications to the database, improve background image readability with overlays/gradients across the site, ensure call CTA uses a functional tel: link, update copy to professional/catchy (using provided link if accessible), use a full-width navigation bar on mobile (no hamburger menu), update the site-wide WhatsApp mobile-number prompt to show only once per browser session (not on every click); when the user clicks Continue after entering their phone number, WhatsApp should open immediately with the prefilled message and no extra confirmation, and rename the site branding/title from \"D. Dhanasekar LIC Guidance Website\" to \"D. Dhanasekar LIC Villupuram Development Officer\".",
   "architectural_notes": [
     "Design style: simple, clear spacing, minimal icons, rounded CTA buttons, fully mobile responsive",
     "Color palette (LIC-inspired): Primary Blue #003399, Accent Yellow #FFCC00, White #FFFFFF, Text #333333",
@@ -9,7 +9,9 @@
     "Apply darker overlays/solid gradients to background images site-wide to improve text readability",
     "Navigation pattern: always show a full-width navigation bar on mobile (no hamburger menu)",
     "Backend admin functions required for inquiries and agent applications: listing, add/delete, status+date fields, and sorting; status enum = New, In Progress, Completed, Pending, Approved, Rejected.",
-    "Update site-wide mobile-number prompt: display only once per browser session (session-scoped), and on Continue immediately open WhatsApp with the prefilled message without additional confirmation."
+    "Update site-wide mobile-number prompt: display only once per browser session (session-scoped), and on Continue immediately open WhatsApp with the prefilled message without additional confirmation.",
+    "Add a standalone, unlinked Google site verification HTML file at /google388a124de0fa03e3.html with exact content provided (no modifications).",
+    "Integrate Google AdSense by inserting the provided async pagead2.googlesyndication.com script (client=ca-pub-3333682219943646) in the <head> on all pages."
   ],
   "known_issues": [],
   "isFixRequest": false,
@@ -197,6 +199,38 @@
         "REQ-31"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-a-static-html-file-named-google388a124de0fa03e3-html-that-is-accessible-at-the-site-root-url-google388a124de0fa03e3-html-and-contains-exactly-this-plain-text-content-no-extra-whitespace-no-html-wrapper-no-additional-markup-google-site-verification-google388a124de0fa03e3-html-do-not-add-any-navigation-links-or-ui-references-to-this-file-anywhere-in-the-website",
+      "title": "Add a static HTML file named \"google388a124de0fa03e3.html\" that is accessible at the site root URL \"/google388a124de0fa03e3.html\" and contains exactly this plain text content (no extra whitespace, no HTML wrapper, no additional markup):\n\ngoogle-site-verification: google388a124de0fa03e3.html\n\nDo not add any navigation links or UI references to this file anywhere in the website.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-site-wide-branding-title-text-from-the-old-name-e-g-d-dhanasekar-lic-guidance-website-d-dhanasekar-lic-guidance-to-exactly-d-dhanasekar-lic-villupuram-development-officer-apply-this-consistently-wherever-the-website-name-brand-is-shown-including-at-minimum-the-browser-tab-title-title-and-the-visible-header-and-footer-branding-copyright-text",
+      "title": "Update the site-wide branding/title text from the old name (e.g., “D. Dhanasekar LIC Guidance Website” / “D. Dhanasekar LIC Guidance”) to exactly: “D.Dhanasekar LIC Villupuram Development Officer”. Apply this consistently wherever the website name/brand is shown, including (at minimum) the browser tab title (<title>) and the visible header and footer branding/copyright text.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-compact-social-links-group-in-the-site-header-aligned-to-the-top-right-containing-clickable-icons-links-for-facebook-linkedin-and-whatsapp-using-the-exact-urls-provided-by-the-user",
+      "title": "Add a compact social-links group in the site header aligned to the top-right, containing clickable icons/links for Facebook, LinkedIn, and WhatsApp using the exact URLs provided by the user.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-provided-google-adsense-loader-script-tag-to-the-global-html-head-so-it-loads-for-every-route-page-of-the-react-spa",
+      "title": "Add the provided Google AdSense loader script tag to the global HTML <head> so it loads for every route/page of the React SPA.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -347,10 +381,34 @@
       "summary": "Update site-wide mobile-number prompt behavior: show only once per browser session; on Continue after entering number, immediately open WhatsApp with prefilled message (no extra confirmation)",
       "reqIds": [],
       "status": "pending"
+    },
+    {
+      "id": "AR-36",
+      "summary": "Add a hidden Google site verification HTML file (google388a124de0fa03e3.html) containing exactly: \"google-site-verification: google388a124de0fa03e3.html\"; no links to it, just make it accessible by direct URL.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-37",
+      "summary": "Rename site branding/title from \"D. Dhanasekar LIC Guidance Website\" to \"D. Dhanasekar LIC Villupuram Development Officer\"",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-38",
+      "summary": "Add Facebook and LinkedIn links (and a WhatsApp link to 9095077994) at the top-right of the site header using the provided profile URLs",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-39",
+      "summary": "Add Google AdSense script tag (client ca-pub-3333682219943646) into the <head> of each site page to enable ads",
+      "reqIds": [],
+      "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "D. Dhanasekar LIC Guidance Website",
+  "projectName": "D. Dhanasekar LIC Villupuram Development Officer",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

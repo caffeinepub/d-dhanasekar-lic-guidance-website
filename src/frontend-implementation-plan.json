@@ -1,41 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Per-session mobile-number prompt with immediate WhatsApp auto-open on Continue",
+  "title": "Add Google AdSense script to site <head>",
   "requirements": [
     {
-      "id": "REQ-30",
-      "summary": "Show the mobile-number prompt modal only once per browser session using sessionStorage so subsequent clicks proceed normally until the session ends.",
+      "id": "REQ-35",
+      "summary": "Add the provided Google AdSense loader script tag to the global HTML <head> so it loads for every route/page of the React SPA.",
       "acceptanceCriteria": [
-        "On a fresh session (new tab/sessionStorage cleared), the first click on a clickable control (<button>, <a>, or elements matching the provider’s selector) opens the mobile-number prompt modal.",
-        "After the user enters a valid Indian mobile number and clicks Continue, a session flag is stored so subsequent clicks in the same session do NOT open the modal.",
-        "On subsequent clicks in the same session, the original click action proceeds normally without being blocked by the modal.",
-        "If the user reloads the page in the same session, the modal still does not reappear on clicks (the per-session behavior persists via sessionStorage).",
-        "If sessionStorage is cleared or a new browser session starts, the modal appears again on the first click."
+        "The following script tag is present inside the <head> of frontend/index.html exactly as provided (including async, src query param client=ca-pub-3333682219943646, and crossorigin=\"anonymous\"): <script async src=\"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3333682219943646\" crossorigin=\"anonymous\"></script>",
+        "After building and deploying, viewing page source shows the script tag in the <head> on all routes (e.g., /, /about, /policies, /contact, /join-agent).",
+        "No other markup or UI changes are introduced as part of adding the AdSense script."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/site/MobileNumberPromptProvider.tsx",
+          "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Add a per-session gating mechanism (sessionStorage flag) so the global capture click handler only intercepts the first eligible click in a session; if the flag is present, do not call preventDefault/stopPropagation and allow the original click behavior to proceed normally."
-        }
-      ]
-    },
-    {
-      "id": "REQ-31",
-      "summary": "On Continue (after validation), auto-open WhatsApp to 9095077994 with a prefilled message containing the entered mobile number (via existing helper), then close the modal and run the originally blocked click once.",
-      "acceptanceCriteria": [
-        "Clicking Continue with a valid mobile number opens WhatsApp immediately in a new tab/window using the existing helper (getWhatsAppLinkForPrompt) and includes the entered mobile number in the prefilled message.",
-        "No extra intermediate confirmation UI is shown after Continue.",
-        "After opening WhatsApp, the modal closes.",
-        "After opening WhatsApp, the originally blocked click action is executed exactly once.",
-        "The WhatsApp auto-open behavior occurs only when the modal is shown (i.e., it follows the same per-session rule)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/site/MobileNumberPromptProvider.tsx",
-          "operation": "modify",
-          "description": "Update the modal confirm flow to (1) persist the per-session completion flag after successful validation, (2) immediately open WhatsApp using the existing getWhatsAppLinkForPrompt helper, (3) close the modal, and (4) execute the originally blocked action exactly once (retain/adjust the bypass mechanism to prevent re-interception)."
+          "description": "Insert the provided Google AdSense loader <script> tag into the document <head> so it is present for all SPA routes; keep all other HTML unchanged."
         }
       ]
     }

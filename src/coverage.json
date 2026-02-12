@@ -1,35 +1,24 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T19:30:22.331Z",
+  "generatedAt": "2026-02-12T03:36:08.430Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-30",
-        "summary": "Update the site-wide mobile-number prompt flow so the prompt is shown only once per browser session: after a user successfully enters a valid mobile number and clicks Continue, do not show the prompt again until the browser session ends (i.e., sessionStorage is cleared).",
+        "id": "REQ-35",
+        "summary": "Add the provided Google AdSense loader script tag to the global HTML <head> so it loads for every route/page of the React SPA.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/site/MobileNumberPromptProvider.tsx"
+          "frontend/index.html"
         ],
         "matchedFiles": [
-          "frontend/src/components/site/MobileNumberPromptProvider.tsx"
-        ]
-      },
-      {
-        "id": "REQ-31",
-        "summary": "When the user clicks Continue in the mobile-number prompt modal (after successful validation), immediately open WhatsApp to 9095077994 with the prefilled message that includes the entered mobile number (using the existing WhatsApp link helper), with no additional confirmation step; then close the prompt and continue the originally attempted click action.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/site/MobileNumberPromptProvider.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/site/MobileNumberPromptProvider.tsx"
+          "frontend/index.html"
         ]
       }
     ]
@@ -39,7 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/site/MobileNumberPromptProvider.tsx",
+    "frontend/index.html",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

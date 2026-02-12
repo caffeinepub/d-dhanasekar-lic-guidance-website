@@ -56,7 +56,7 @@ export default function SiteFooter() {
         {/* Bottom Bar */}
         <div className="mt-8 border-t border-white/20 pt-6 text-center text-sm text-white/70">
           <p className="mb-2">
-            © {currentYear} D. Dhanasekar LIC Guidance. All rights reserved.
+            © {currentYear} D.Dhanasekar LIC Villupuram Development Officer. All rights reserved.
           </p>
           <p className="flex items-center justify-center gap-1">
             Built with <Heart className="h-4 w-4 fill-red-500 text-red-500" /> using{' '}

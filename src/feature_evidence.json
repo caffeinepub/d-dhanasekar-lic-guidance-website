@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-site-wide-mobile-number-prompt-flow-so-the-prompt-is-shown-only-once-per-browser-session-after-a-user-successfully-enters-a-valid-mobile-number-and-clicks-continue-do-not-show-the-prompt-again-until-the-browser-session-ends-i-e-sessionstorage-is-cleared",
-      "featureTitle": "Update the site-wide mobile-number prompt flow so the prompt is shown only once per browser session: after a user successfully enters a valid mobile number and clicks Continue, do not show the prompt again until the browser session ends (i.e., sessionStorage is cleared).",
+      "featureId": "feature-add-the-provided-google-adsense-loader-script-tag-to-the-global-html-head-so-it-loads-for-every-route-page-of-the-react-spa",
+      "featureTitle": "Add the provided Google AdSense loader script tag to the global HTML <head> so it loads for every route/page of the React SPA.",
       "files": [
-        "frontend/src/components/site/MobileNumberPromptProvider.tsx"
+        "frontend/index.html"
       ],
       "components": [
         "authorization@4.0.0",
@@ -16,26 +16,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-30"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-when-the-user-clicks-continue-in-the-mobile-number-prompt-modal-after-successful-validation-immediately-open-whatsapp-to-9095077994-with-the-prefilled-message-that-includes-the-entered-mobile-number-using-the-existing-whatsapp-link-helper-with-no-additional-confirmation-step-then-close-the-prompt-and-continue-the-originally-attempted-click-action",
-      "featureTitle": "When the user clicks Continue in the mobile-number prompt modal (after successful validation), immediately open WhatsApp to 9095077994 with the prefilled message that includes the entered mobile number (using the existing WhatsApp link helper), with no additional confirmation step; then close the prompt and continue the originally attempted click action.",
-      "files": [
-        "frontend/src/components/site/MobileNumberPromptProvider.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-31"
+        "REQ-35"
       ],
       "confidence": "high"
     }

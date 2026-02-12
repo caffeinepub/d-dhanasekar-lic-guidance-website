@@ -1,6 +1,8 @@
 import { Link } from '@tanstack/react-router';
 import { Shield } from 'lucide-react';
+import { SiFacebook, SiLinkedin, SiWhatsapp } from 'react-icons/si';
 import { useIsCallerAdmin } from '../../hooks/useQueries';
+import { getWhatsAppLink } from '../../lib/contactLinks';
 
 export default function SiteHeader() {
   const { data: isAdmin } = useIsCallerAdmin();
@@ -12,10 +14,41 @@ export default function SiteHeader() {
           <Link to="/" className="flex items-center gap-2">
             <Shield className="h-8 w-8 text-lic-primary" />
             <div>
-              <div className="text-xl font-bold text-lic-primary">LIC Villupuram</div>
-              <div className="text-xs text-lic-text/70">D. Dhanasekar</div>
+              <div className="text-xl font-bold text-lic-primary">D.Dhanasekar</div>
+              <div className="text-xs text-lic-text/70">LIC Villupuram Development Officer</div>
             </div>
           </Link>
+          
+          {/* Social Links */}
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.facebook.com/licdhanasekar"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit our Facebook page"
+              className="text-lic-text transition-colors hover:text-[#1877F2]"
+            >
+              <SiFacebook className="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dhanasekar-d-67b059166/?originalSubdomain=in"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit our LinkedIn profile"
+              className="text-lic-text transition-colors hover:text-[#0A66C2]"
+            >
+              <SiLinkedin className="h-5 w-5" />
+            </a>
+            <a
+              href={getWhatsAppLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Contact us on WhatsApp"
+              className="text-lic-text transition-colors hover:text-[#25D366]"
+            >
+              <SiWhatsapp className="h-5 w-5" />
+            </a>
+          </div>
         </div>
         <nav className="border-t border-gray-100 py-3">
           <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
